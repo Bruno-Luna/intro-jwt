@@ -15,6 +15,16 @@ public class IntroJwtApplication {
 	        String jwt = token.gerarToken("Bruno Luna", dataDeExpiracao);
 
 	        System.out.println("\nJWT: " + jwt);
-	}
+	        
+	        	
+	        System.out.println("\n\t :: Aguarde alguns segundos. Estamos verificando a validade do token ::\n");
+	        Thread.sleep(8000L); //faz a aplicação dormir por 'x' tempo - é medido em milisegundos
+	        
+	        if(token.validarToken()) {
+	        	System.out.println("Token válido ✔");
+	        } else {
+	        	System.out.println("Token inválido ❌");
+	        }
+		}
 
 }

@@ -14,7 +14,7 @@ public class Utils {
 	        return key;
 	    }
 
-	    public static Date definirDataDeExpiracao(long tempoEmMinutos) {
+	 public static Date definirDataDeExpiracao(long tempoEmMinutos) {
 	        LocalDateTime localDateTime = LocalDateTime.now().plusMinutes(tempoEmMinutos);
 	        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 	    }  //tempo que o token irá expirar, sendo assim perderá sua validade.

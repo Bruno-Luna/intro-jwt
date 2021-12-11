@@ -28,4 +28,14 @@ public class TokenJwt {
 	                .compact();
 	        return jwt;
 	    }
+
+	 
+	 public boolean validarToken() {
+	        try {
+	            Jwts.parser().setSigningKey(chave).parseClaimsJws(jwt);
+	            return true;
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    }
 }
