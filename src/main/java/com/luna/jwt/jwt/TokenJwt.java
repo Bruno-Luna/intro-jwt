@@ -1,6 +1,8 @@
 package com.luna.jwt.jwt;
 
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -21,7 +23,7 @@ public class TokenJwt {
 	        jwt = Jwts.builder()
 	                .setHeaderParam("typ","JWT")
 	                .setSubject(nomeUsuario)
-	                .setIssuer("Java developer")
+	                .setIssuer("Luna©")
 	                .setIssuedAt(new Date())
 	                .setExpiration(dataExpiracao)
 	                .signWith(SignatureAlgorithm.HS256, chave)
@@ -38,4 +40,19 @@ public class TokenJwt {
 	            return false;
 	        }
 	    }
+	 
+	 public String recuperarSubjectToken() {
+		 Jws<Claims> claimsJws = Jwts.parser().setSigningKey(chave).parseClaimsJws(jwt);
+		 return claimsJws.getBody().getSubject();
+	 }
+	 
+	 public String recuperarIssueToken() {
+		 Jws<Claims> claimsJws = Jwts.parser().setSigningKey(chave).parseClaimsJws(jwt);
+		 return claimsJws.getBody().getIssuer();
+	 }
+	 
+	 public String recuperarDateToken() {
+		 Jws<Claims> claimsJws = Jwts.parser().setSigningKey(chave).parseClaimsJws(jwt);
+		 return claimsJws.getBody().getIssuedAt().toLocaleString();
+	 }
 }

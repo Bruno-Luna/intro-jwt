@@ -18,10 +18,13 @@ public class IntroJwtApplication {
 	        
 	        	
 	        System.out.println("\n\t :: Aguarde alguns segundos. Estamos verificando a validade do token ::\n");
-	        Thread.sleep(8000L); //faz a aplicação dormir por 'x' tempo - é medido em milisegundos
+	        Thread.sleep(6000L); //faz a aplicação dormir por 'x' tempo - é medido em milisegundos
 	        
 	        if(token.validarToken()) {
 	        	System.out.println("Token válido ✔");
+	        	System.out.println("\nNome do usuário : " + token.recuperarSubjectToken());
+	        	System.out.println("Emissor do token: " + token.recuperarIssueToken());
+	        	System.out.println("Data: " + token.recuperarDateToken());
 	        } else {
 	        	System.out.println("Token inválido ❌");
 	        }
