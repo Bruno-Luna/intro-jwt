@@ -22,7 +22,7 @@ public class IntroJwtApplication {
 	        
 	        if(token.validarToken()) {
 	        	System.out.println("Token válido ✔");
-	        	System.out.println("\nNome do usuário : " + token.recuperarSubjectToken());
+	        	System.out.println("\nNome do usuário: " + token.recuperarSubjectToken());
 	        	System.out.println("Emissor do token: " + token.recuperarIssueToken());
 	        	System.out.println("Data: " + token.recuperarDateToken());
 	        } else {

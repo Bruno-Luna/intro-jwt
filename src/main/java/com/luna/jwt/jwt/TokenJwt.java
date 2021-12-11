@@ -15,23 +15,31 @@ public class TokenJwt {
 	
 	private String jwt;
 	
+	//construtor. Sem a chave não fará a geração do json web-token
 	public TokenJwt(Key chave) {
 		this.chave = chave;
 	}
 	
 	 public String gerarToken(String nomeUsuario, Date dataExpiracao) {
+		 //classe Jwts
 	        jwt = Jwts.builder()
+	        		//Criação das partes do JWT
+	        		//Header
 	                .setHeaderParam("typ","JWT")
+	                
+	                //corpo (payload)
 	                .setSubject(nomeUsuario)
 	                .setIssuer("Luna©")
 	                .setIssuedAt(new Date())
 	                .setExpiration(dataExpiracao)
+	                
+	                //Assinatura do token(algoritmo + chave)
 	                .signWith(SignatureAlgorithm.HS256, chave)
-	                .compact();
+	                .compact(); //construirá o jwt
 	        return jwt;
 	    }
 
-	 
+	 //fará a validação do token, caso não seja a exceção será lançada(false)
 	 public boolean validarToken() {
 	        try {
 	            Jwts.parser().setSigningKey(chave).parseClaimsJws(jwt);
